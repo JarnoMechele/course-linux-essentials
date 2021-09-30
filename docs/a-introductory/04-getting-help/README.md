@@ -186,41 +186,146 @@ Find all the info you need in the man-pages. Make sure to comment the commands y
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ The free command
+### ✅ The free command
 
 *Describe in your own words what the `free` command does. Give an example and a partial output.*
 
-### ❌ The id command
+It displays the total amount of free and used physical and swap memory in the system.
+
+Example: free
+
+```bash
+            total        used        free      shared  buff/cache   available
+Mem:       16612092     7384200     8998540       17720      229352     9094160
+Swap:      50331648       14220    50317428
+```
+
+### ✅ The id command
 
 *Describe in your own words what the `id` command does. Give an example and a partial output.*
 
-### ❌ The tree command
+It prints the user and group information for an user.
+
+Example: id jarno
+
+```bash
+d=1000(jarno) gid=1000(jarno) groups=1000(jarno),4(adm),20(dialout),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev),117(netde
+```
+
+### ✅ The tree command
 
 *Describe in your own words what the `tree` command does. How do you list all subdirectories too? How can you only include directories? If the `tree` command is not available on your system you can install it using `sudo apt install tree`*
 
-### ❌ The which command
+Command tree is a directory that produces a listing of files.
+
+Example: tree -a
+
+```bash
+├── .bash_history
+├── .bash_logout
+├── .bashrc
+├── .landscape
+│   └── sysinfo.log
+├── .lesshst
+├── .motd_shown
+├── .profile
+├── .sudo_as_admin_successful
+└── .wsl-config
+```
+
+### ✅ The which command
 
 *Describe in your own words what the `which` command does. What is the result for `pwd` ?*
 
-### ❌ The file command
+The which command displays the pathnames of the files.
+
+Example: which -a pwd
+
+```bash
+/usr/bin/pwd
+/bin/pwd
+```
+
+### ✅ The file command
 
 *Describe in your own words what the `file` command does. What is the result for `~/.bashrc` ?*
 
-### ❌ The type command
+The command file will determine what the type of the file is.
+
+Example: ~/.bashrc
+
+```bash
+/home/jarno/.bashrc: ASCII text
+```
+
+### ✅ The type command
 
 *Describe in your own words what the `type` command does. What is the result for `ls` and what is the result for `g++` ?*
 
-### ❌ Counting lines and words
+The command type will show you how a given command would be interpreted if typed on the command line.
+
+type ls:
+
+```bash
+ls is aliased to `ls --color=auto'
+```
+
+type g++:
+
+```bash
+g++ is /usr/bin/g++
+```
+
+### ✅ Counting lines and words
 
 *What command can be used to count lines and words in text? Give an example and explain the output.*
 
-### ❌ The wget command
+The command `wc`can be used to count lines and words in text.
+
+Example: wc /proc/cpuinfo
+
+```bash
+312 2112 11246 /proc/cpuinfo
+```
+
+### ✅ The wget command
 
 *How can you download a file from the Internet using the command line?. Find a file online to use it on and demonstrate its usage.*
 
-### ❌ The dmesg command
+The command `wget`lets us download a file from the internet.
+
+Example: wget github.com
+
+```bash
+--2021-09-30 13:13:39--  http://github.com/
+Resolving github.com (github.com)... 140.82.121.3
+Connecting to github.com (github.com)|140.82.121.3|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://github.com/ [following]
+--2021-09-30 13:13:39--  https://github.com/
+Connecting to github.com (github.com)|140.82.121.3|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘index.html’
+
+index.html                                [ <=>                                                                   ] 233.66K  --.-KB/s    in 0.09s
+
+2021-09-30 13:13:39 (2.45 MB/s) - ‘index.html’ saved [239269]
+```
+
+### ✅ The dmesg command
 
 *Describe in your own words what the `dmesg` command does. Give an example and a partial output.*
+
+The command dmesg is used to examine or control the kernel ring buffer.
+
+```bash
+[    0.016698]  Microsoft 4.4.0-19041.1237-Microsoft 4.4.35
+[    0.100317] <3>init: (1) ERROR: ConfigInitializeCommon:570: Failed to mount /usr/lib/wsl/drive
+[    0.100321] : 19
+[    0.100753] <3>init: (1) ERROR: ConfigInitializeCommon:570: Failed to mount /usr/lib/wsl/lib
+[    0.100773] 19
+```
 
 ### ❌ Checksums
 
