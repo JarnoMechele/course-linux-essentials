@@ -293,7 +293,7 @@ Example: wc /proc/cpuinfo
 
 *How can you download a file from the Internet using the command line?. Find a file online to use it on and demonstrate its usage.*
 
-The command `wget`lets us download a file from the internet.
+The command `wget` lets us download a file from the internet.
 
 Example: wget github.com
 
@@ -316,7 +316,7 @@ index.html                                [ <=>                                 
 
 ### ✅ The dmesg command
 
-*Describe in your own words what the `dmesg` command does. Give an example and a partial output.*
+*Describe in your own words what the dmesg command does. Give an example and a partial output.*
 
 The command dmesg is used to examine or control the kernel ring buffer.
 
@@ -328,21 +328,30 @@ The command dmesg is used to examine or control the kernel ring buffer.
 [    0.100773] 19
 ```
 
-### ❌ Checksums
+### ✅ Checksums
 
 *Go to the website of Raspberry Pi - [https://www.raspberrypi.org/software/operating-systems](https://www.raspberrypi.org/software/operating-systems) and download the Raspberry Pi OS image using the `wget` command line tool. Now check if the SHA-256 checksum complies with the one being advertised on the website.*
 
 *What tool did you use to calculate the checksum? Demonstrate its usage.*
 
-*What is the use of this hash?*
+cksum ./2021-05-07-raspios-buster-armhf-lite.zip
+1779386885 465662909 ./2021-05-07-raspios-buster-armhf-lite.zip
 
-### ❌ The printenv command
+*What is the use of this hash?*
+shasum ./2021-05-07-raspios-buster-armhf-lite.zip
+5e402402984b4f9216b2a3eff1f830d169afd4ea  ./2021-05-07-raspios-buster-armhf-lite.zip
+
+### ✅ The printenv command
 
 *Describe in your own words what the `printenv` command does.*
 
-### ❌ IP Address
+The command printenv will print the whole environment or a part of it.
+
+### ✅ IP Address
 
 *Find the IP address of your WiFi interface. What command did you use?*
+
+To find the IP address of your WiFi interface use the command: ip addr.
 
 ### ❌ IP of Sivir Server
 
