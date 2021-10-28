@@ -353,6 +353,10 @@ The command printenv will print the whole environment or a part of it.
 
 To find the IP address of your WiFi interface use the command: ip addr.
 
-### ❌ IP of Sivir Server
+### ✅ IP of Sivir Server
 
 *What is the IP address of the internal server `sivir.devbit.be`? Make sure you are connected to the `Devbit` network.*
+
+dig +short sivir.devbit.be
+
+The IP address is: 172.16.10.5
