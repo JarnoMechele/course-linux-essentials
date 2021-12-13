@@ -373,32 +373,98 @@ Try to solve the challenges without using google. Better to use the man-pages to
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ System user accounts
+### ✅ System user accounts
 
 *Try to login to the `daemon` system user account. Use `sudo su daemon`. What does it display as a message ? What application is outputting this message ? Run that application and prove it.*
 
-### ❌ Creating group with id
+```bash
+sudo su daemon                                                                                     ok  07:44:56 PM
+[sudo] password for jarno:
+This account is currently not available
+```
+
+### ✅ Creating group with id
 
 *Create a group called `hackers` with the specific group id `1337`. Now create two users (students from the class) and add them both the group.*
 
-### ❌ Difference false and nologin
+```bash
+sudo addgroup hackers --gid 1337
+```
+
+```bash
+sudo adduser bart
+sudo adduser lukas
+```
+
+```bash
+sudo adduser bart hackers
+sudo adduser lukas hackers
+```
+
+### ✅  Difference false and nologin
 
 *Some user entries are showing `/bin/false` as the shell command. Do some research and explain what the difference is with `/usr/sbin/nologin`.*
 
-### ❌ The auth.log file 
+```bash
+ ~  nologin                                                                                         1 err  08:17:26 PM
+This account is currently not available.
+```
+
+```bash
+ ~  false                                                                                              ok  08:13:28
+```
+
+nologin outputs a text to the terminal and false doesn't.
+
+### ✅ The auth.log file
 
 *What does the file `/log/var/auth.log` track? Provide an example of a command that shows entries being added to the log after you executed the command. Include the entry here that was added to the file.*
 
-### ❌ Locking out Steve
+```bash
+Dec 13 20:03:24 papi su: pam_unix(su:session): session closed for user daemon
+Dec 13 20:03:24 papi sudo: pam_unix(sudo:session): session closed for user root
+Dec 13 20:17:01 papi CRON[8131]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 20:17:01 papi CRON[8131]: pam_unix(cron:session): session closed for user root
+```
+
+Keep authentication logs and authentication processes.
+
+### ✅ Locking out Steve
 
 *Create a new user steve and set a password for the user. Login to the `steve` account using `su` to make sure it works.*
 
 *Now lock the user account and make sure there is no way anyone can login as `steve`, not even `root`*
 
-### ❌ Zsh Shell
+```bash
+ ~  sudo adduser steve
+
+ ~  sudo passwd -l steve                                                                          ok  10s  08:32:33 PM
+passwd: password expiry information changed.
+
+ ~  sudo usermod --expiredate 1 steve                                                                  ok  08:33:56 PM
+
+ ~  sudo su steve                                                                                      ok  08:34:17 PM
+Your account has expired; please contact your system administrator
+su: Authentication failure
+
+```
+
+### ✅ Zsh Shell
 
 *Install the zsh shell on your system. Now change your own shell to `zsh`. Make sure to do this in such a way that a new session will also use `zsh`.*
 
-### ❌ Semester Account
+```bash
+sudo apt install zsh
+
+sudo usermod --shell /bin/zsh jarno
+```
+
+### ✅ Semester Account
 
 *Create a new account for an exchange student called `maggie`. Make sure the account can only be used until 31st of January of the next year. Basically only for this semester*.
+
+```bash
+sudo adduser maggie
+sudo usermod --expiredate 2022-01-31 maggie
+
+```

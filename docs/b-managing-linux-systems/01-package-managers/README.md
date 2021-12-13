@@ -346,13 +346,32 @@ cowsay hello im a linux cow :o
                 ||----w |
                 ||     ||
 
-### ❌ Nmap
+### ❌✅ Nmap
 
 *Install the `nmap` package using `apt`.*
 
 *Port scan the server `sivir.devbit.be`. Make sure you are connected to the `Devbit` network. What services are running on this machine?*
 
-### ❌ NodeJS
+```bash
+ ~  nmap sivir.devbit.be                                                                          ok  25s  05:50:23 PM
+Warning: Nmap may not work correctly on Windows Subsystem for Linux.
+For best performance and accuracy, use the native Windows build from https://nmap.org/download.html#windows.
+Starting Nmap 7.80 ( https://nmap.org ) at 2021-12-13 18:06 CET
+Problem binding to interface , errno: 92
+socket_bindtodevice: Protocol not available
+Problem binding to interface , errno: 92
+socket_bindtodevice: Protocol not available
+Problem binding to interface , errno: 92
+socket_bindtodevice: Protocol not available
+Problem binding to interface , errno: 92
+socket_bindtodevice: Protocol not available
+Note: Host seems down. If it is really up, but blocking our ping probes, try -Pn
+Nmap done: 1 IP address (0 hosts up) scanned in 3.07 seconds
+```
+
+Dit lukt niet met WSL en zal moeten op de PI gebeuren.
+
+### ✅ NodeJS
 
 *Install `snap` using `apt`. Next use `snap` to install `nodejs`.*
 
@@ -362,10 +381,43 @@ cowsay hello im a linux cow :o
 console.log("Hello World from JavaScript");
 ```
 
+On the pi.
+
+1. sudo apt install snapd
+2. sudo snap install node --classic --channel=14
+3. node
+
+```bash
+> console.log("Hello World from Javascript")
+Hello World from Javascript
+```
+
 ### ❌ Dhcpdump
 
 *Install the `dhcpdump` and try to capture some DHCP traffic in the network. Work together with another student and try to capture the DHCP request of his/her laptop. Find out what the MAC Address is and check it using the `ip` or `ipconfig` tool.*
 
-### ❌ MQTT
+### ✅ MQTT
 
 *Find a command line tool that allows you to publish messages to an MQTT broker. Use it to send your name to the topic `linux/students`. Use the broker `mqtt.devbit.be`.*
+
+First install mosquitto-clients (on the PI)
+
+```bash
+sudo apt install mosquitto-clients
+```
+
+Next
+
+```bash
+mosquitto_pub --topic linux/students -h mqtt.devbit.be -m "Jarno Mechele" 
+```
+
+result:
+  mqtt.devbit.be
+  smartmeter
+  $SYS
+  iotlab
+  shellies
+  linux
+    students = Jarno Mechele
+  test

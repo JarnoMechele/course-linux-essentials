@@ -634,39 +634,97 @@ Try to solve the challenges without using google. Better to use the man-pages to
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ Authentication Log
+### ✅  Authentication Log
 
 *There is a file on the system that logs authentication changes and failures. Can you guess where it can be found? Provide the path to the file.*
 
-### ❌ Apt Source List
+```bash
+cat /var/log/auth.log
+```
+
+### ✅ Apt Source List
 
 *The apt tool uses a configuration file which specifies in which repositories it should look for packages. Its called the apt `sources.list` file. Can you guess where it can be found? Provide the path to the file.*
 
-### ❌ Tmp Filesystem
+```bash
+/etc/apt/souces.list
+```
+
+Don't have the sources.list.
+
+### ✅ Tmp Filesystem
 
 *Create a file called `hello` in `/tmp`. Restart your linux distro using `reboot`. Where is the file? What happened?*
 
-### ❌ Timestamps
+The file disappeared. If you place any file in tmp it won't be there anymore after rebooting.
+
+### ✅ Timestamps
 
 *Create a file called `first-of-many` in your home directory. Use `nano` to add some content to the file. Now list the details of the file such as the size and when it was last modified.*
 
-### ❌ No space for spaces
+```bash
+
+barry@LAPTOP-TG4BGB75:/home$ ls -l first-of-many
+-rw-r--r-- 1 root root 13 Dec 13 21:49 first-of-many
+
+```
+
+### ✅  No space for spaces
 
 *Try to create a file called `second try` (with the space included) using the command `touch second try` in your home directory. What happened? Why did this happen? How can you actually achieve creating a file with a space in its name?*
 
-### ❌ The root
+```bash
+barry@LAPTOP-TG4BGB75:/home$ touch second try
+touch: cannot touch 'second': Permission denied
+touch: cannot touch 'try': Permission denied
+```
+
+=> you can't use a space between words.
+
+```bash
+barry@LAPTOP-TG4BGB75:/home$ sudo touch 'second try'
+```
+
+=> if you still want to use a space between two words.
+
+### ✅ The root
 
 *Try to create a directory `/backups` (under the root of the filesystem). Why is it failing?*
 
+=> because you need to have permission.
+
 *Now use `sudo` to create the directory. Try creating a file called `README.md` within this `/backups` directory. Can you do it? Why / Why not?*
+
+```bash
+ !w ~/backups  ls                                                                                      ok  10:02:51 PM
+README.md
+```
+
+=> you use the command sudo.
 
 ### ❌ Bash RC
 
 *In your home directory you will find a file called `.bashrc`. Create a backup of that file called `.bashrc.bak`.*
 
-### ❌ Sym Linking
+
+### ✅ Sym Linking
 
 *What does the tool `ln` allow you to do? Use it to create such a link in your home directory called `secrets` to the file `/etc/passwd`. Now use the `cat` tool to open the file `secrets`. What do you see? What happened?*
+
+=> ln: make links between files.
+
+```bash
+barry@LAPTOP-TG4BGB75:/home$ sudo ln -s /etc/passwd secrets
+```
+
+```bash
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+```
+
+=> it made a link to passwd.
 
 ### ❌ SD Card
 
