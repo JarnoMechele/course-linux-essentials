@@ -604,9 +604,23 @@ Solve the challenges by creating small bash scripts. Place the bash scripts here
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ Log the Date
+### ✅ Log the Date
 
 *Create a script that output the date every 10 seconds. Use the `sleep` command to wait between calls to the `date` command.*
+
+```bash
+#!/usr/bin/env bash
+
+echo "hello"
+
+dateloop=$(date)
+
+for (( count=1; count<=10; count++ ))
+do  
+  echo "$dateloop"
+  sleep 10
+done
+```
 
 ### ❌ Available Memory
 

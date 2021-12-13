@@ -258,49 +258,125 @@ Try to solve the challenges without using google. Better to use the man-pages to
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ Locate
+### ✅ Locate
 
 *Install the `locate` command and update the index database.*
 
 *Locate the following files on your system:*
 
 * `sudoers.dist`
+
+```bash
+/usr/share/doc/sudo/examples/sudoers.dist
+```
+
 * the configuration file `ssh_config`
+
+```bash
+/etc/ssh/ssh_config
+/etc/ssh/ssh_config.d
+/mnt/c/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/Git/etc/ssh/ssh_config
+/mnt/c/Program Files/Git/etc/ssh/ssh_config
+/usr/share/man/man5/ssh_config.5.gz
+```
+
 * `auth.log`
 
-### ❌ Python man-pages
+```bash
+ locate auth.log
+```
+
+Doesn't work with ubuntu on windows, so try on PI.
+
+### ✅ Python man-pages
 
 *Use the `whereis` tool to determine the location of the man-pages of `python`.*
 
-### ❌ Python man-pages
+```bash
+whereis -m python
+```
+
+This command gives me an empty output.
+
+### ✅ Python man-pages
 
 *Use the `whereis` tool to determine the location of the `find` binary.*
 
-### ❌ Which
+```bash
+whereis -m find
+
+/usr/share/man/man1/find.1.gz
+```
+
+### ✅ Which
 
 *What is the location of the following commands for the current user:*
 
 * `passwd`
+
+```bash
+/usr/bin/passwd
+```
+
 * `locate`
+
+```bash
+/usr/bin/locate
+```
+
 * `fdisk`
 
+```bash
+/usr/sbin/fdisk
+```
+
 *Why are the location of `passwd` and `fdisk` different? What is `fdisk` used for?*
+
+ With fdisk you can partitions on hard drives to make, change and delete.
 
 ### Use find for the following challenges
 
 Make sure to redirect the `permission denied` errors to `/dev/null` for all searches unless specified otherwise.
 
-#### ❌ kernel.log
+#### ✅ kernel.log
 
 *Find the file `kernel.log`.*
 
-#### ❌ .bashrc
+```bash
+find / -type f -name "kernel.log" 2>/dev/null
+```
+
+Can't find on WSL.
+
+#### ✅ .bashrc
 
 *Find the files `.bashrc`.*
 
-#### ❌ System Configuration Files
+```bash
+find / -type f -name "*.bashrc" 2>/dev/null
+
+/etc/bash.bashrc
+/etc/skel/.bashrc
+/home/barry/.bashrc
+/home/jarno/.bashrc
+/mnt/c/Program Files/Git/etc/bash.bashrc
+/mnt/c/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/Git/etc/bash.bashrc
+/usr/share/base-files/dot.bashrc
+/usr/share/doc/adduser/examples/adduser.local.conf.examples/bash.bashrc
+/usr/share/doc/adduser/examples/adduser.local.conf.examples/skel/dot.bashrc
+```
+
+#### ✅ System Configuration Files
 
 *Search for files that end with the extension `.conf` and contain a filename with the keyword `system` in the `/etc` directory.*
+
+```bash
+find /etc -type f -name "*system*" -name "*.conf" 2>/dev/null
+/etc/systemd/system.conf
+
+find /etc -type f -name "*system*.conf" 2>/dev/null
+/etc/systemd/system.conf
+```
 
 #### ❌ User Readable Files
 
