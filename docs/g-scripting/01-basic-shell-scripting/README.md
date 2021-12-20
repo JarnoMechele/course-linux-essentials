@@ -622,17 +622,45 @@ do
 done
 ```
 
-### ❌ Available Memory
+### ✅ Available Memory
 
 *Output the available system memory together with the current date in the following format:*
 
-```
+```bash
 [Thu 14 May 2020 11:12:55 AM CEST] MemAvailable:   28439572 kB
 ```
 
 *The available memory can be found in the file `/proc/meminfo`. Use the `grep` tool to filter out the line with MemAvailable.*
 
-### ❌ Fetching Github Keys
+```bash
+ ~  cd /tmp                                                                                           255  11:05:10 AM
+
+ /tmp  touch memory                                                                                    ok  12:28:42 PM
+
+ /tmp  chmod u+x memory                                                                                ok  12:28:54 PM
+
+ /tmp  ls -al memory                                                                                   ok  12:29:01 PM
+-rwxr--r-- 1 jarno jarno 0 Dec 20 12:28 memory
+
+ /tmp  nano hello                                                                                      ok  12:29:06 PM
+
+ /tmp  nano memory                                                                                 ok  7s  12:29:22 PM
+```
+
+```bash
+#!/usr/bin/env bash
+
+date=$(date +%F" "%T" "%p" "%Z)
+memory=$(grep MemFree /proc/meminfo)
+echo "[ ${date} ] ${memory}"
+```
+
+```bash
+ /tmp  ./memory                                                                                    ok  4s  12:29:45 PM
+[ 2021-12-20 12:29:57 PM CET ] MemFree:         6561424 kB
+```
+
+### ✅ Fetching Github Keys
 
 *Create a script that fetches the public SSH keys of a user on GitHub and displays them in the terminal. This can be accomplished by using the curl tool to access the endpoint `https://github.com/<username>.keys`, where `<username>` is an existing github username.*
 
@@ -653,10 +681,53 @@ Fetching Keys
 ...
 ```
 
+```bash
+/tmp  touch gitexercise                                                                       ok  1m 33s  12:42:30 PM
+/tmp  chmod u+x gitexercise
+/tmp  nano gitexercise                                                                                ok  12:43:07 PM
+```
+
+```bash
+#!/usr/bin/env bash
+
+if [ "$#" -eq 0 ]; then
+  echo "Please enter your github username"
+  read githubName
+else
+  githubName=$1
+fi
+
+key=$(curl -s https://github.com/${githubName}.keys)
+echo ${key}
+```
+
+```bash
+/tmp  ./gitexercise                                                                           ok  30s  %  12:44:21 PM
+Please enter your github username
+JarnoMechele
+ssh-rsa.........
+```
+
 ### ❌ DHCP Traffic
 
 *Create a script that filters DHCP network traffic and outputs matching MAC-Addresses, IP-Addresses and Hostnames.*
 
-### ❌ Backups
+### ✅ Backups
 
 *Choose a directory on your system (best to choose one in your home-dir). Create a script that archives this directory in a `.tar.gz` tarball file. Add a timestamp in the name of the output file.*
+
+```bash
+ !w /home  sudo mkdir backups                                                                    1 err  %  12:55:56 PM
+ !w /home  sudo touch tarex                                                                        ok | %  12:56:00 PM
+ !w /home  sudo chmod u+x tarex                                                                    ok | %  12:56:04 PM
+
+ ```
+
+```bash
+#!/usr/bin/env bash
+
+now=$(date '+%F_%H'h'-%M'm'-%S's'')
+
+tar -czvf "tarex_${now}.tar.gz" $HOME/backups
+
+```

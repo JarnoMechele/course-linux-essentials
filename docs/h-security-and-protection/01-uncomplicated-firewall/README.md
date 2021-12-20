@@ -183,7 +183,7 @@ Try to solve the challenges without using google. Better to use the man-pages to
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ Enable Firewall
+### ✅ Enable Firewall
 
 *Install and enable the ufw service on your Raspberry Pi.*
 
@@ -191,6 +191,24 @@ Mark challenges using a ✅ once they are finished.
 
 *Set the default rule to allow outgoing and deny incoming connections.*
 
-### ❌ Setup Apache
+```bash
+   sudo apt install ufw
+   sudo systemctl enable ufw
+   sudo ufw allow ssh
+   sudo systemctl start ufw
+```
+
+=> check status: sudo ufw status | grep -qw active
+    echo $? = 1
+
+### ✅ Setup Apache
 
 *Install and enable the apache webserver. Make sure to enable http connections to the Raspberry Pi. Test it out by surfing to your Raspberry Pi using a webbrowser.*
+
+```bash
+pi@papi:~ $ sudo ufw allow http
+Rule added
+Rule added (v6)
+pi@papi:~ $ cd /var/www/html/
+pi@papi:/var/www/html $ sudo nano index.html
+```

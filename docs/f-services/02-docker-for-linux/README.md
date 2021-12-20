@@ -253,18 +253,97 @@ Try to solve the challenges without using google. Better to use the man-pages to
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ Docker on the Pi
+### ✅ Docker on the Pi
 
 *Install docker and your raspberry pi and make sure the hello-world runs*.
 
-### ❌ Hello API from RPi
- 
+```bash
+pi@papi:~ $ sudo docker run hello-world
+
+Hello from Docker!
+```
+
+### ✅ Hello API from RPi
+
 *Setup the hello-node-api on the Raspberry Pi as a docker container. Make sure it runs on port 8000.*
 
 *You can find the repository at [https://github.com/BioBoost/linux-essentials-docker-hello-node-api](https://github.com/BioBoost/linux-essentials-docker-hello-node-api)*.
 
-### ❌ Node-RED on RPi
+```bash
+pi@papi: mkdir new-app
+pi@papi:~ $ cd new-app/
+pi@papi:~/new-app $ sudo touch hello.js
+```
+
+```js
+// Import the top-level function of express
+const express = require('express');
+
+// Creates an Express application using the top-level function
+const app = express();
+
+// Define port number as 3000
+const port = 8000;
+
+// Routes HTTP GET requests to the specified path "/" with the specified callback function
+app.get('/', function(request, response) {
+  response.send('Hello, World!');
+});
+
+// Make the app listen on port 3000
+app.listen(port, function() {
+  console.log('Server listening on http://localhost:' + port);
+});
+```
+
+```bash
+pi@papi:~/new-app $ sudo npm install --save express
+pi@papi:~/new-app $ node hello.js
+Server listening on http://localhost:8000
+```
+
+### ✅ Node-RED on RPi
 
 *Setup a node-red service on your Raspberry Pi using docker. At what port is it available?*
 
 *Use the image [https://hub.docker.com/r/nodered/node-red](https://hub.docker.com/r/nodered/node-red)*.
+
+```bash
+pi@papi:~ $ sudo  docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-red
+
+> node-red-docker@2.1.3 start /usr/src/node-red
+> node $NODE_OPTIONS node_modules/node-red/red.js $FLOWS "--userDir" "/data"
+
+20 Dec 11:13:57 - [info]
+
+Welcome to Node-RED
+===================
+
+20 Dec 11:13:57 - [info] Node-RED version: v2.1.3
+20 Dec 11:13:57 - [info] Node.js  version: v14.18.1
+20 Dec 11:13:57 - [info] Linux 5.10.63-v7l+ arm LE
+20 Dec 11:13:58 - [info] Loading palette nodes
+20 Dec 11:13:59 - [info] Settings file  : /data/settings.js
+20 Dec 11:13:59 - [info] Context store  : 'default' [module=memory]
+20 Dec 11:13:59 - [info] User directory : /data
+20 Dec 11:13:59 - [warn] Projects disabled : editorTheme.projects.enabled=false
+20 Dec 11:13:59 - [info] Flows file     : /data/flows.json
+20 Dec 11:13:59 - [warn]
+
+---------------------------------------------------------------------
+Your flow credentials file is encrypted using a system-generated key.
+
+If the system-generated key is lost for any reason, your credentials
+file will not be recoverable, you will have to delete it and re-enter
+your credentials.
+
+You should set your own key using the 'credentialSecret' option in
+your settings file. Node-RED will then re-encrypt your credentials
+file using your chosen key the next time you deploy a change.
+---------------------------------------------------------------------
+
+20 Dec 11:13:59 - [info] Server now running at http://127.0.0.1:1880/
+20 Dec 11:13:59 - [info] Starting flows
+20 Dec 11:13:59 - [info] Started flows
+
+```

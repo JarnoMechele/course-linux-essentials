@@ -378,18 +378,45 @@ find /etc -type f -name "*system*.conf" 2>/dev/null
 /etc/systemd/system.conf
 ```
 
-#### ❌ User Readable Files
+#### ✅ User Readable Files
 
 *What option can we use on `find` to make sure the current user can read the file? Don't use the `-perm` option. There is a better option. Give a nice example.*
 
-#### ❌ Altered Log Files
+```bash
+ls -l | grep r-
+```
+
+#### ✅ Altered Log Files
 
 *Find all log files in `/var/log` that were modified in the last 24 hours. Make sure to only include files and not directories. Now extend the command to perform a long listing human readable `ls` for each file.*
 
-#### ❌ Steal All Logs
+```bash
+find /var/log * -mmin -1440 -ls 2>dev/null
+```
+
+#### ❌✅ Steal All Logs
 
 *Create a directory `logs` in `/tmp` and copy all `*.log` files you can find on the system to that location.*
 
-#### ❌ Markdown README files
+```bash
+mkdir logs
+
+find . -type f -name "*.log" -exec cp'{}' /tmp/logs 2>/dev/null
+```
+
+=> Didn't get any log files in the directory.
+
+#### ✅ Markdown README files
 
 *Find all `README.md` files on your system. Can you make it so the case of the filename does not matter? In other words, you should also be able to find `readme.md`, `Readme.md`, `readme.MD`, ...*
+
+```bash
+ find / -type f -iname "README.md" 2>dev/null
+
+/mnt/c/Users/jarno/Downloads/typescripttest/node_modules/typescript/lib/README.md
+/mnt/c/Users/jarno/Downloads/typescripttest/node_modules/typescript/README.md
+/mnt/c/Users/jarno/Downloads/typescripttest/node_modules/undefsafe/README.md
+/mnt/c/Users/jarno/Downloads/typescripttest/node_modules/unique-string/readme.md
+/mnt/c/Users/jarno/Downloads/typescripttest/node_modules/unpipe/README.md
+/mnt/c/Users/jarno/Downloads/typescripttest/node_modules/update-notifier/node_modules/semver/README.md
+```
